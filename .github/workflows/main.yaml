@@ -1,0 +1,20 @@
+name: API Tests
+
+on:
+  workflow_dispatch:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    env:
+      BASE_URL: 'http://localhost:3000'
+  
+    steps:
+      - name: Checkout do repositorio
+        uses: actions/checkout@v4
+    
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Rodar os testes de API via Controller
+        run: npm run test-controller
