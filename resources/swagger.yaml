@@ -1,0 +1,334 @@
+openapi: 3.0.0
+info:
+  title: Pace Connect API
+  version: 1.0.0
+  description: API para conectar corredores com pace semelhante e promover treinos em grupo sob supervisão de treinador.
+servers:
+  - url: http://localhost:3000
+paths:
+  /users/register:
+    post:
+      summary: Registro de usuário (aluno ou treinador)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                usuario:
+                  type: string
+                senha:
+                  type: string
+                nascimento:
+                  type: string
+                  format: date
+                sexo:
+                  type: string
+                experiencia:
+                  type: string
+                objetivo:
+                  type: string
+                pace:
+                  type: integer
+                tipo:
+                  type: string
+              required:
+                - usuario
+                - senha
+                - nascimento
+                - sexo
+                - experiencia
+                - objetivo
+                - pace
+                - tipo
+            description: "Não envie o campo 'id', ele será gerado automaticamente."
+      responses:
+        '201':
+          description: Usuário registrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+        '400':
+          description: Erro ao registrar usuário
+  /users/login:
+    post:
+      summary: Login de usuário
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                usuario:
+                  type: string
+                senha:
+                  type: string
+      responses:
+        '200':
+          description: Token JWT
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        '401':
+          description: Credenciais inválidas
+  /users:
+    get:
+      summary: Listar todos os usuários (alunos e professores)
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Lista de usuários
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '401':
+          description: Token não fornecido
+  /users/{id}:
+    get:
+      summary: Buscar dados de um usuário
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Dados do usuário
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: Usuário não encontrado
+        '401':
+          description: Token não fornecido
+  /trainings:
+    post:
+      summary: Registrar treino
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dataHora:
+                  type: string
+                  format: date-time
+                distancia:
+                  type: number
+                tempoTotal:
+                  type: string
+                  format: time
+                pace:
+                  type: integer
+              required:
+                - dataHora
+                - distancia
+                - tempoTotal
+                - pace
+            description: "Não envie o campo 'id', ele será gerado automaticamente."
+      responses:
+        '201':
+          description: Treino registrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Training'
+        '401':
+          description: Token não fornecido
+  /trainings/mine:
+    get:
+      summary: Buscar treinos do usuário logado
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Lista de treinos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Training'
+        '401':
+          description: Token não fornecido
+  /trainings/user/{userId}:
+    get:
+      summary: Buscar treinos de um usuário (apenas treinador)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Lista de treinos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Training'
+        '403':
+          description: Acesso permitido apenas para treinadores
+        '401':
+          description: Token não fornecido
+  /trainings/{id}:
+    delete:
+      summary: Excluir treino
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Treino excluído
+        '404':
+          description: Treino não encontrado ou não autorizado
+        '401':
+          description: Token não fornecido
+  /trainings/consolidate/{userId}:
+    get:
+      summary: Consolidar pace de um aluno (apenas treinador)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Pace consolidado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pace:
+                    type: integer
+        '404':
+          description: Sem treinos válidos para consolidação
+        '403':
+          description: Acesso permitido apenas para treinadores
+        '401':
+          description: Token não fornecido
+  /trainings/consolidate/all:
+    get:
+      summary: Consolidar pace de todos os alunos (apenas treinador)
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Lista de alunos com pace consolidado
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    usuario:
+                      type: string
+                    pace:
+                      type: integer
+        '403':
+          description: Acesso permitido apenas para treinadores
+        '401':
+          description: Token não fornecido
+  /trainings/group:
+    get:
+      summary: Agrupar alunos por pace (apenas treinador)
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Grupos de alunos por pace
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/User'
+        '403':
+          description: Acesso permitido apenas para treinadores
+        '401':
+          description: Token não fornecido
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        usuario:
+          type: string
+        senha:
+          type: string
+        nascimento:
+          type: string
+          format: date
+        sexo:
+          type: string
+        experiencia:
+          type: string
+        objetivo:
+          type: string
+        pace:
+          type: integer
+        tipo:
+          type: string
+    Training:
+      type: object
+      properties:
+        id:
+          type: integer
+        userId:
+          type: integer
+        dataHora:
+          type: string
+          format: date-time
+        distancia:
+          type: number
+        tempoTotal:
+          type: string
+          format: time
+        pace:
+          type: integer
