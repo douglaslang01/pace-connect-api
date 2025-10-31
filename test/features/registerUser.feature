@@ -40,7 +40,7 @@ Feature: Registro de Usuário
         Then o sistema deve retornar status 400
         And deve exibir mensagem de tipo inválido para pace
 
-    Scenario: CT06: Tipo inválido para campo tipo
+    Scenario: CT06: Valor inválido para campo tipo
         Given que o sistema está disponível
         When envio uma requisição POST para "/users/register" com os dados:
             | usuario | senha  | nascimento | sexo | experiencia | objetivo | pace | tipo  |
