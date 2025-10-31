@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test-controller": "mocha 'test/controller/**/*.test.js' --timeout 20000 --reporter mochawesome",
     "start": "node src/index.js",
     "dev": "nodemon src/index.js"
   },
@@ -22,7 +23,11 @@
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
-    "nodemon": "^3.0.1"
+    "chai": "^6.2.0",
+    "mocha": "^11.7.4",
+    "mochawesome": "^7.1.4",
+    "nodemon": "^3.0.1",
+    "supertest": "^7.1.4"
   },
   "author": "",
   "license": "ISC",
