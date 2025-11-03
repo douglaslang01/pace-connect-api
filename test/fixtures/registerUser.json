@@ -1,0 +1,130 @@
+[
+  {
+    "id": "CT01",
+    "description": "Cadastro de usuário válido",
+    "payload": {
+      "usuario": "aluno10",
+      "senha": "123456",
+      "nascimento": "2000-01-01",
+      "sexo": "M",
+      "experiencia": "iniciante",
+      "objetivo": "saúde",
+      "pace": 300,
+      "tipo": "aluno"
+    },
+    "expected": {
+      "status": 201,
+      "hasId": true,
+      "hasToken": false
+    }
+  },
+  {
+    "id": "CT02",
+    "description": "Campos obrigatórios ausentes",
+    "payload": {
+      "usuario": "",
+      "senha": "",
+      "nascimento": "2000-01-01",
+      "sexo": "M",
+      "experiencia": "iniciante",
+      "objetivo": "saúde",
+      "pace": 300,
+      "tipo": "aluno"
+    },
+    "expected": {
+      "status": 400,
+      "error": true
+    }
+  },
+  {
+    "id": "CT03",
+    "description": "Data de nascimento inválida",
+    "payload": {
+      "usuario": "aluno3",
+      "senha": "123456",
+      "nascimento": "invalid-date",
+      "sexo": "F",
+      "experiencia": "iniciante",
+      "objetivo": "saúde",
+      "pace": 300,
+      "tipo": "aluno"
+    },
+    "expected": {
+      "status": 400,
+      "error": true
+    }
+  },
+  {
+    "id": "CT04",
+    "description": "Valor inválido para sexo",
+    "payload": {
+      "usuario": "aluno4",
+      "senha": "123456",
+      "nascimento": "2000-01-01",
+      "sexo": "X",
+      "experiencia": "iniciante",
+      "objetivo": "saúde",
+      "pace": 300,
+      "tipo": "aluno"
+    },
+    "expected": {
+      "status": 400,
+      "error": true
+    }
+  },
+  {
+    "id": "CT05",
+    "description": "Tipo inválido para pace",
+    "payload": {
+      "usuario": "aluno5",
+      "senha": "123456",
+      "nascimento": "2000-01-01",
+      "sexo": "M",
+      "experiencia": "iniciante",
+      "objetivo": "saúde",
+      "pace": "cinco",
+      "tipo": "aluno"
+    },
+    "expected": {
+      "status": 400,
+      "error": true
+    }
+  },
+  {
+    "id": "CT06",
+    "description": "Valor inválido para campo tipo",
+    "payload": {
+      "usuario": "aluno7",
+      "senha": "123456",
+      "nascimento": "2000-01-01",
+      "sexo": "M",
+      "experiencia": "iniciante",
+      "objetivo": "saúde",
+      "pace": 300,
+      "tipo": "admin"
+    },
+    "expected": {
+      "status": 400,
+      "error": true
+    }
+  },
+  {
+    "id": "CT07",
+    "description": "Usuário já existente",
+    "payload": {
+      "usuario": "aluno01",
+      "senha": "123456",
+      "nascimento": "2000-01-01",
+      "sexo": "M",
+      "experiencia": "iniciante",
+      "objetivo": "saúde",
+      "pace": 300,
+      "tipo": "aluno"
+    },
+    "expected": {
+      "status": 400,
+      "error": true,
+      "errorMsg": "Erro ao registrar usuário"
+    }
+  }
+]

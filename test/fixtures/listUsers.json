@@ -1,0 +1,46 @@
+[
+    {
+        "id": "CT12",
+        "description": "Busca de usuários autenticado",
+        "headers": {
+            "Authorization": "Bearer <token válido>"
+        },
+        "expected": {
+            "status": 200,
+            "bodyType": "array",
+            "fields": [
+                {
+                    "name": "id",
+                    "type": "number"
+                },
+                {
+                    "name": "usuario",
+                    "type": "string"
+                },
+                {
+                    "name": "tipo",
+                    "type": "string"
+                }
+            ]
+        }
+    },
+    {
+        "id": "CT13",
+        "description": "Busca de usuários sem autenticação",
+        "expected": {
+            "status": 401,
+            "errorMsg": "Token não fornecido"
+        }
+    },
+    {
+        "id": "CT14",
+        "description": "Busca de usuários com token inválido",
+        "headers": {
+            "Authorization": "Bearer <token inválido>"
+        },
+        "expected": {
+            "status": 403,
+            "errorMsg": "token"
+        }
+    }
+]

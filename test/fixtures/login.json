@@ -1,0 +1,51 @@
+[
+  {
+    "id": "CT08",
+    "description": "Login com usuário e senha válidos",
+    "payload": {
+      "usuario": "aluno1",
+      "senha": "123456"
+    },
+    "expected": {
+      "status": 200,
+      "hasToken": true
+    }
+  },
+  {
+    "id": "CT09",
+    "description": "Login com senha incorreta",
+    "payload": {
+      "usuario": "aluno1",
+      "senha": "xyz"
+    },
+    "expected": {
+      "status": 401,
+      "errorMsg": "Credenciais inválidas",
+      "hasToken": false
+    }
+  },
+  {
+    "id": "CT10",
+    "description": "Login com usuario incorreto",
+    "payload": {
+      "usuario": "xyz",
+      "senha": "123456"
+    },
+    "expected": {
+      "status": 401,
+      "errorMsg": "Credenciais inválidas",
+      "hasToken": false
+    }
+  },
+  {
+    "id": "CT11",
+    "description": "Login com password numérico (tipo inválido)",
+    "payload": {
+      "usuario": "aluno1",
+      "senha": 123456
+    },
+    "expected": {
+      "status": 500
+    }
+  }
+]

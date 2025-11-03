@@ -12,4 +12,12 @@ app.use('/users', userRoutes);
 app.use('/trainings', trainingRoutes);
 app.use('/docs', swaggerRoute);
 
+app.get('/status', (req, res) => {
+    // Retorna um status 200 OK e um objeto JSON simples
+    res.status(200).json({
+        status: 'ok',
+        message: 'Serviço está rodando normalmente.'
+    });
+});
+
 module.exports = app;

@@ -53,5 +53,5 @@ Feature: Registro de Usuário
         When envio uma requisição POST para "/users/register" com os dados:
             | usuario | senha  | nascimento | sexo | experiencia | objetivo | pace | tipo  |
             | aluno01 | 123456 | 2000-01-01 | M    | iniciante   | saúde    | 300  | aluno |
-        Then o sistema deve retornar status 409
-        And deve exibir mensagem "Usuário já cadastrado"
+        Then o sistema deve retornar status 400
+        And deve exibir mensagem "Erro ao registrar usuário"

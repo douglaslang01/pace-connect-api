@@ -1,7 +1,7 @@
 Objetivo Criar uma API Rest para conectar corredores com pace semelhante, promovendo treinos em grupo sob supervisão de um treinador.
 
 Contexto
-- A API possui as seguintes funcionalidades: registro de aluno e treinador, busca de todos alunos e professores, busca de dados de um aluno/professor baseado no seu id, registro de treinos, busca de treinos, exclusão de treinos, consolidação do pace e agrupamento de grupos por pace.
+- A API possui as seguintes funcionalidades: registro de aluno e treinador, busca de todos alunos e treinadores, busca de dados de um aluno/professor baseado no seu id, registro de treinos, busca de treinos, exclusão de treinos, consolidação do pace e agrupamento de grupos por pace.
 - Alunos têm acesso ao histórico de treinos realizados de por si mesmo (ex.: endpoint /trainings/mine).
 - Apenas os treinadores têm acesso completo aos histórico de treinos de todos os alunos, consolidação do pace e agrupamento por pace.
 - Para que o aluno possa consultar seu progresso, ele precisa estar logado.

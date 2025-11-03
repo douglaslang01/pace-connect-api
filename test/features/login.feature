@@ -5,8 +5,8 @@ Feature: Login do Usuário
         When envio uma requisição POST para "/users/login" com os dados:
             | usuario | senha  |
             | aluno1  | 123456 |
-        Then o sistema deve retornar status 201
-        And o token JWT não deve ser retornado
+        Then o sistema deve retornar status 200
+        And o token JWT deve ser retornado
 
     Scenario: CT09: Login com senha incorreta
         Given o usuário "aluno1" e senha "123456" está cadastrado
