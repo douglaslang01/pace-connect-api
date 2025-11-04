@@ -4,7 +4,7 @@ const { expect } = require('chai');
 
 // Aplicação
 const app = require('../../../src/app');
-const testCases = require('../../fixtures/registerUser.json');
+const testCases = require('../../fixtures/users/registerUser.json');
 
 describe('Registro de Usuário - Data Driven', () => {
   testCases.forEach(tc => {
@@ -18,7 +18,7 @@ describe('Registro de Usuário - Data Driven', () => {
       if (tc.expected.hasId) expect(res.body).to.have.property('id');
       if (tc.expected.hasToken === false) expect(res.body).to.not.have.property('token');
       if (tc.expected.error) expect(res.body).to.have.property('error');
-      if (tc.expected.errorMsg) expect(res.body.error).to.match(new RegExp(tc.expected.errorMsg, 'i'));
+      if (tc.expected.errorMsg) expect(res.body.error).to.equal(tc.expected.errorMsg);
     });
   });
 });

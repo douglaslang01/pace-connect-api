@@ -43,7 +43,7 @@
     },
     "expected": {
       "status": 403,
-      "errorMsg": "token"
+      "errorMsg": "Token inválido"
     }
   },
   {
@@ -55,7 +55,7 @@
     },
     "expected": {
       "status": 404,
-      "errorMsg": "não encontrado"
+      "errorMsg": "Usuário não encontrado"
     }
   },
   {

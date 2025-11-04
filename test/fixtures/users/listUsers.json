@@ -40,7 +40,7 @@
         },
         "expected": {
             "status": 403,
-            "errorMsg": "token"
+            "errorMsg": "Token inválido"
         }
     }
 ]
