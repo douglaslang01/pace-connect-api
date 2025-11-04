@@ -1,0 +1,46 @@
+[
+    {
+        "id": "CT27",
+        "description": "Busca de treinos autenticado",
+        "headers": {
+            "Authorization": "Bearer <token válido>"
+        },
+        "expected": {
+            "status": 200,
+            "bodyType": "array",
+            "fields": [
+                {
+                    "name": "id",
+                    "type": "number"
+                },
+                {
+                    "name": "distancia",
+                    "type": "number"
+                },
+                {
+                    "name": "pace",
+                    "type": "number"
+                }
+            ]
+        }
+    },
+    {
+        "id": "CT28",
+        "description": "Busca de treinos sem autenticação",
+        "expected": {
+            "status": 401,
+            "errorMsg": "Token não fornecido"
+        }
+    },
+    {
+        "id": "CT29",
+        "description": "Busca de treinos com token inválido",
+        "headers": {
+            "Authorization": "Bearer <token inválido>"
+        },
+        "expected": {
+            "status": 403,
+            "errorMsg": "Token inválido"
+        }
+    }
+]

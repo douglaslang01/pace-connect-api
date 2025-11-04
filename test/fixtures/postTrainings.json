@@ -1,0 +1,20 @@
+[
+    {
+        "dataHora": "2024-11-05T08:00:00",
+        "distancia": 10,
+        "tempoTotal": "01:00:00",
+        "pace": 360
+    },
+    {
+        "dataHora": "2024-11-06T08:00:00",
+        "distancia": 5,
+        "tempoTotal": "00:28:00",
+        "pace": 300
+    },
+    {
+        "dataHora": "2024-11-07T08:00:00",
+        "distancia": 12,
+        "tempoTotal": "01:02:03",
+        "pace": 270
+    }
+]
