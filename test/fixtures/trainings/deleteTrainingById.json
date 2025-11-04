@@ -1,0 +1,58 @@
+[
+  {
+    "id": "CT36",
+    "description": "Exclusão de treino autenticado",
+    "trainingId": 1,
+    "headers": {
+      "Authorization": "Bearer <token válido>"
+    },
+    "expected": {
+      "status": 204
+    }
+  },
+  {
+    "id": "CT37",
+    "description": "Exclusão de treino sem autenticação",
+    "trainingId": 1,
+    "expected": {
+      "status": 401,
+      "errorMsg": "Token não fornecido"
+    }
+  },
+  {
+    "id": "CT38",
+    "description": "Exclusão de treino com token inválido",
+    "trainingId": 1,
+    "headers": {
+      "Authorization": "Bearer <token inválido>"
+    },
+    "expected": {
+      "status": 403,
+      "errorMsg": "Token inválido"
+    }
+  },
+  {
+    "id": "CT39",
+    "description": "Exclusão de treino inexistente",
+    "trainingId": 999,
+    "headers": {
+      "Authorization": "Bearer <token válido>"
+    },
+    "expected": {
+      "status": 404,
+      "errorMsg": "Treino não encontrado ou não autorizado"
+    }
+  },
+  {
+    "id": "CT40",
+    "description": "Exclusão de treino com formato inválido para ID",
+    "trainingId": "abc",
+    "headers": {
+      "Authorization": "Bearer <token válido>"
+    },
+    "expected": {
+      "status": 404,
+      "errorMsg": "Treino não encontrado ou não autorizado"
+    }
+  }
+]
