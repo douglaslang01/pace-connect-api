@@ -2,7 +2,7 @@
   {
     "id": "CT01",
     "description": "Cadastro de usuário válido",
-    "payload": {
+    "body": {
       "usuario": "aluno10",
       "senha": "123456",
       "nascimento": "2000-01-01",
@@ -21,7 +21,7 @@
   {
     "id": "CT02",
     "description": "Campos obrigatórios ausentes",
-    "payload": {
+    "body": {
       "usuario": "",
       "senha": "",
       "nascimento": "2000-01-01",
@@ -39,7 +39,7 @@
   {
     "id": "CT03",
     "description": "Data de nascimento inválida",
-    "payload": {
+    "body": {
       "usuario": "aluno3",
       "senha": "123456",
       "nascimento": "invalid-date",
@@ -57,7 +57,7 @@
   {
     "id": "CT04",
     "description": "Valor inválido para sexo",
-    "payload": {
+    "body": {
       "usuario": "aluno4",
       "senha": "123456",
       "nascimento": "2000-01-01",
@@ -75,7 +75,7 @@
   {
     "id": "CT05",
     "description": "Tipo inválido para pace",
-    "payload": {
+    "body": {
       "usuario": "aluno5",
       "senha": "123456",
       "nascimento": "2000-01-01",
@@ -93,7 +93,7 @@
   {
     "id": "CT06",
     "description": "Valor inválido para campo tipo",
-    "payload": {
+    "body": {
       "usuario": "aluno7",
       "senha": "123456",
       "nascimento": "2000-01-01",
@@ -111,7 +111,7 @@
   {
     "id": "CT07",
     "description": "Usuário já existente",
-    "payload": {
+    "body": {
       "usuario": "aluno01",
       "senha": "123456",
       "nascimento": "2000-01-01",

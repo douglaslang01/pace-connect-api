@@ -1,0 +1,130 @@
+[
+    {
+        "id": "CT20",
+        "description": "Registro de treino válido",
+        "headers": {
+            "Authorization": "Bearer <token válido>"
+        },
+        "body": {
+            "dataHora": "2025-11-04T08:00:00",
+            "distancia": 10,
+            "tempoTotal": "01:00:00",
+            "pace": 360
+        },
+        "expected": {
+            "status": 201,
+            "bodyType": "object",
+            "fields": [
+                {
+                    "name": "id",
+                    "type": "number"
+                },
+                {
+                    "name": "distancia",
+                    "type": "number"
+                },
+                {
+                    "name": "pace",
+                    "type": "number"
+                }
+            ]
+        }
+    },
+    {
+        "id": "CT21",
+        "description": "Registro de treino sem autenticação",
+        "body": {
+            "dataHora": "2025-11-04T08:00:00",
+            "distancia": 10,
+            "tempoTotal": "01:00:00",
+            "pace": 360
+        },
+        "expected": {
+            "status": 401,
+            "errorMsg": "Token não fornecido"
+        }
+    },
+    {
+        "id": "CT22",
+        "description": "Registro de treino com token inválido",
+        "headers": {
+            "Authorization": "Bearer <token inválido>"
+        },
+        "body": {
+            "dataHora": "2025-11-04T08:00:00",
+            "distancia": 10,
+            "tempoTotal": "01:00:00",
+            "pace": 360
+        },
+        "expected": {
+            "status": 403,
+            "errorMsg": "Token inválido"
+        }
+    },
+    {
+        "id": "CT23",
+        "description": "Registro de treino com dados ausentes",
+        "headers": {
+            "Authorization": "Bearer <token válido>"
+        },
+        "body": {
+            "dataHora": "",
+            "distancia": "",
+            "tempoTotal": "",
+            "pace": ""
+        },
+        "expected": {
+            "status": 400,
+            "errorMsg": "Campos Obrigatórios não preenchidos"
+        }
+    },
+    {
+        "id": "CT24",
+        "description": "Registro de treino com formato inválido",
+        "headers": {
+            "Authorization": "Bearer <token válido>"
+        },
+        "body": {
+            "dataHora": "invalid-date",
+            "distancia": "dez",
+            "tempoTotal": "abc",
+            "pace": "string"
+        },
+        "expected": {
+            "status": 400,
+            "errorMsg": "Erro ao registrar treino"
+        }
+    },
+    {
+        "id": "CT25",
+        "description": "Registro de treino com valores não permitidos",
+        "headers": {
+            "Authorization": "Bearer <token válido>"
+        },
+        "body": {
+            "dataHora": "2025-11-04T08:00:00",
+            "distancia": 0,
+            "tempoTotal": "01:00:00",
+            "pace": 0
+        },
+        "expected": {
+            "status": 400,
+            "errorMsg": "Erro ao registrar treino"
+        }
+    },
+    {
+        "id": "CT26",
+        "description": "Registro de treino sem distancia e pace",
+        "headers": {
+            "Authorization": "Bearer <token válido>"
+        },
+        "body": {
+            "dataHora": "2025-11-04T08:00:00",
+            "tempoTotal": "01:00:00"
+        },
+        "expected": {
+            "status": 400,
+            "errorMsg": "Campos Obrigatórios não preenchidos"
+        }
+    }
+]

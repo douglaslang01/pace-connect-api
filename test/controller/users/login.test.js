@@ -6,13 +6,13 @@ const { expect } = require('chai');
 const app = require('../../../src/app');
 const testCases = require('../../fixtures/users/login.json');
 
-describe('Login do Usuário - Data Driven', () => {
+describe('Login do Usuário - Data Driven: POST /users/login', () => {
   testCases.forEach(tc => {
     it(`${tc.id}: ${tc.description}`, async () => {
 
       const res = await request(app)
         .post('/users/login')
-        .send(tc.payload);
+        .send(tc.body);
 
       expect(res.status).to.equal(tc.expected.status);
       if (tc.expected.hasToken === false) expect(res.body).to.not.have.property('token');

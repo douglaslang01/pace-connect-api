@@ -15,7 +15,7 @@ describe('Busca de Usuários', () => {
         token = await auth.getToken();
     });
 
-    describe('Consulta de Usuários - Data Driven', () => {
+    describe('Consulta de Usuários - Data Driven: GET /users', () => {
 
         testCases.forEach(tc => {
             it(`${tc.id}: ${tc.description}`, async () => {
@@ -41,7 +41,7 @@ describe('Busca de Usuários', () => {
         });
     });
 
-    describe('Consulta de Usuário por ID - Data Driven', () => {
+    describe('Consulta de Usuário por ID - Data Driven: GET /users/{id}', () => {
 
         testCasesById.forEach(tc => {
             it(`${tc.id}: ${tc.description}`, async () => {

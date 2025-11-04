@@ -2,7 +2,7 @@
   {
     "id": "CT08",
     "description": "Login com usuário e senha válidos",
-    "payload": {
+    "body": {
       "usuario": "aluno1",
       "senha": "123456"
     },
@@ -14,7 +14,7 @@
   {
     "id": "CT09",
     "description": "Login com senha incorreta",
-    "payload": {
+    "body": {
       "usuario": "aluno1",
       "senha": "xyz"
     },
@@ -27,7 +27,7 @@
   {
     "id": "CT10",
     "description": "Login com usuario incorreto",
-    "payload": {
+    "body": {
       "usuario": "xyz",
       "senha": "123456"
     },
@@ -40,7 +40,7 @@
   {
     "id": "CT11",
     "description": "Login com password numérico (tipo inválido)",
-    "payload": {
+    "body": {
       "usuario": "aluno1",
       "senha": 123456
     },
