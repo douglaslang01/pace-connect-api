@@ -24,6 +24,18 @@ const getMyWorkouts = async (token) =>
         .get('/trainings/mine')
         .set('Authorization', `Bearer ${token}`);
 
+const deleteWorkout = async (token, id) =>
+    await request(app)
+        .delete(`/trainings/user/${id}`)
+        .set('Authorization', `Bearer ${token}`);
+
+const deleteWorkouts = async (token, bodyWorkouts) => {
+    if (Array.isArray(bodyWorkouts) && bodyWorkouts.length > 0) {
+        bodyWorkouts.forEach(async workout => {
+            _ = await deleteWorkout(token, workout.id);
+        })
+    }
+};
 
 
-module.exports = { postWorkouts, getMyWorkouts }
+module.exports = { postWorkout, postWorkouts, getMyWorkouts, deleteWorkout, deleteWorkouts }

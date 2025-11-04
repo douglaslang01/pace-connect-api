@@ -5,22 +5,22 @@ const { expect } = require('chai');
 //Aplicação
 const app = require('../../../src/app');
 const auth = require('../../Utils/authentication');
-const { postWorkouts, getMyWorkouts } = require('../../Utils/workout');
+const { postWorkouts } = require('../../Utils/workout');
 const trainingsArray = require('../../fixtures/postTrainings.json');
-const testCases = require('../../fixtures/trainings/listMyTrainings.json');
+const testCases = require('../../fixtures/trainings/listTrainingsByUserId.json');
 
-describe('Consulta de Treinos do Usuário Logado - Data Driven: GET /trainings/mine', () => {
+describe('Consulta de Treinos por ID do Usuário - Data Driven: GET /trainings/user/{userId}', () => {
   let token;
   before(async () => {
-    token = await auth.getToken(); //login do aluno1
+    token = await auth.getToken(); //login do aluno1 (ID: 1)
 
-    //Adiciona treinos do aluno1
+    //Adiciona treinos do aluno1 (ID: 1)
     await postWorkouts(token, trainingsArray);
   });
 
   testCases.forEach(tc => {
     it(`${tc.id}: ${tc.description}`, async () => {
-      let req = request(app).get('/trainings/mine');
+      let req = request(app).get(`/trainings/user/${tc.userId}`);
 
       if (tc.headers && tc.headers.Authorization) {
         req = req.set('Authorization', tc.headers.Authorization.replace('<token válido>', token));
@@ -38,18 +38,5 @@ describe('Consulta de Treinos do Usuário Logado - Data Driven: GET /trainings/m
         });
       }
     });
-  });
-
-  it('CT30 - Busca treinos do usuário logado', async () => {
-    const myWorkouts = (await getMyWorkouts(token)).body.length;
-
-    //faz o login e posta treinos de um usuario do tipo treinador
-    const trainerToken = await auth.getTokenWithCredendials('treinador1', '123456');
-    await postWorkouts(trainerToken, trainingsArray);
-
-    const res = await getMyWorkouts(token);
-
-    expect(res.status).to.equal(200);
-    expect(res.body.length).to.equal(myWorkouts);
   });
 });
