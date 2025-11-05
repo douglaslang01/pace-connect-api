@@ -1,0 +1,116 @@
+[
+    {
+        "id": "CT45",
+        "description": "Consolidação de pace com treinos nos últimos 30 dias",
+        "userId": 1,
+        "trainings": [
+            {
+                "dataHora": "2025-11-01T08:00:00",
+                "distancia": 10,
+                "tempoTotal": "01:00:00",
+                "pace": 360
+            },
+            {
+                "dataHora": "2025-10-20T08:00:00",
+                "distancia": 5,
+                "tempoTotal": "00:30:00",
+                "pace": 350
+            }
+        ],
+        "headers": {
+            "Authorization": "Bearer <token válido>"
+        },
+        "expected": {
+            "status": 200,
+            "pace": 355
+        }
+    },
+    {
+        "id": "CT46",
+        "description": "Consolidação de pace sem treinos nos últimos 30 dias",
+        "userId": 3,
+        "trainings": [],
+        "headers": {
+            "Authorization": "Bearer <token válido>"
+        },
+        "expected": {
+            "status": 404,
+            "errorMsg": "Sem treinos válidos para consolidação"
+        }
+    },
+    {
+        "id": "CT47",
+        "description": "Consolidação de pace ignorando treinos incompletos",
+        "userId": 4,
+        "trainings": [
+            {
+                "dataHora": "2025-11-01T08:00:00",
+                "distancia": 10,
+                "tempoTotal": "01:00:00",
+                "pace": 360
+            },
+            {
+                "dataHora": "2025-10-20T08:00:00",
+                "tempoTotal": "00:30:00",
+                "pace": 350
+            },
+            {
+                "dataHora": "2025-10-15T08:00:00",
+                "distancia": 5,
+                "tempoTotal": "00:30:00"
+            }
+        ],
+        "headers": {
+            "Authorization": "Bearer <token válido>"
+        },
+        "expected": {
+            "status": 200,
+            "pace": 360
+        }
+    },
+    {
+        "id": "CT48",
+        "description": "Consolidação de pace sem autenticação",
+        "userId": 1,
+        "expected": {
+            "status": 401,
+            "errorMsg": "Token não fornecido"
+        }
+    },
+    {
+        "id": "CT49",
+        "description": "Consolidação de pace com token inválido",
+        "userId": 1,
+        "headers": {
+            "Authorization": "Bearer <token inválido>"
+        },
+        "expected": {
+            "status": 403,
+            "errorMsg": "Token inválido"
+        }
+    },
+    {
+        "id": "CT50",
+        "description": "Consolidação de pace para usuário inexistente",
+        "userId": 999,
+        "headers": {
+            "Authorization": "Bearer <token válido>"
+        },
+        "expected": {
+            "status": 404,
+            "errorMsg": "Sem treinos válidos para consolidação"
+        }
+    },
+    {
+        "id": "CT51",
+        "description": "Consolidação de pace com formato inválido para userId",
+        "userId": "abc",
+        "headers": {
+            "Authorization": "Bearer <token válido>"
+        },
+        "expected": {
+            "status": 404,
+            "errorMsg": "Sem treinos válidos para consolidação"
+        }
+    }
+]

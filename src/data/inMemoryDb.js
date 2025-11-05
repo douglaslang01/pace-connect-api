@@ -24,6 +24,28 @@ const users = [
         objetivo: 'performance',
         pace: 240,
         tipo: 'treinador'
+    },
+    {
+        id: userIdSeq++,
+        usuario: 'aluno2',
+        senha: bcrypt.hashSync('123456', 8),
+        nascimento: '1993-09-11',
+        sexo: 'F',
+        experiencia: 'iniciante',
+        objetivo: 'saúde',
+        pace: 380,
+        tipo: 'aluno'
+    },
+    {
+        id: userIdSeq++,
+        usuario: 'aluno3',
+        senha: bcrypt.hashSync('123456', 8),
+        nascimento: '2003-12-02',
+        sexo: 'M',
+        experiencia: 'iniciante',
+        objetivo: 'saúde',
+        pace: 325,
+        tipo: 'aluno'
     }
 ];
 const trainings = [];

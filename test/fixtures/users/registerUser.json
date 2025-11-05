@@ -40,7 +40,7 @@
     "id": "CT03",
     "description": "Data de nascimento inválida",
     "body": {
-      "usuario": "aluno3",
+      "usuario": "aluno13",
       "senha": "123456",
       "nascimento": "invalid-date",
       "sexo": "F",
@@ -58,7 +58,7 @@
     "id": "CT04",
     "description": "Valor inválido para sexo",
     "body": {
-      "usuario": "aluno4",
+      "usuario": "aluno14",
       "senha": "123456",
       "nascimento": "2000-01-01",
       "sexo": "X",
@@ -76,7 +76,7 @@
     "id": "CT05",
     "description": "Tipo inválido para pace",
     "body": {
-      "usuario": "aluno5",
+      "usuario": "aluno15",
       "senha": "123456",
       "nascimento": "2000-01-01",
       "sexo": "M",
@@ -94,7 +94,7 @@
     "id": "CT06",
     "description": "Valor inválido para campo tipo",
     "body": {
-      "usuario": "aluno7",
+      "usuario": "aluno17",
       "senha": "123456",
       "nascimento": "2000-01-01",
       "sexo": "M",

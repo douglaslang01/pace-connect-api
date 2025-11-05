@@ -1,6 +1,8 @@
+//Biblioteca
 const request = require('supertest');
 const { expect } = require('chai');
 
+//Aplicação
 const app = require('../../../src/app');
 const auth = require('../../Utils/authentication');
 const { postUsers } = require('../../Utils/user');

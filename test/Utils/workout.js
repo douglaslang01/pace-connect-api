@@ -3,6 +3,8 @@ const request = require('supertest');
 
 //Aplicação
 const app = require('../../src/app');
+const { getUser, postUser } = require('./user');
+const { getTokenWithCredendials } = require('./authentication');
 
 const postWorkout = async (token, bodyWorkout) =>
     await request(app)
@@ -18,6 +20,27 @@ const postWorkouts = async (token, bodyWorkouts) => {
         })
     }
 };
+
+const postWorkoutsbByUser = async (token, userId, bodyWorkouts) => {
+    const userResponse = await getUser(token, userId);
+    if (userResponse.status != 200) {
+        _ = await postUser(`
+            {
+                "id": ${userId},
+                "usuario": "aluno${userId}",
+                "senha": "123456",
+                "nascimento": "2000-01-01",
+                "sexo": "M",
+                "experiencia": "iniciante",
+                "objetivo": "saúde",
+                "pace": 300,
+                "tipo": "aluno"
+            } `);
+    }
+
+    const userToken = await getTokenWithCredendials(userResponse.body.usuario, userResponse.body.senha);
+    _ = await postWorkouts(userToken, bodyWorkouts);
+}
 
 const getMyWorkouts = async (token) =>
     await request(app)
@@ -38,4 +61,4 @@ const deleteWorkouts = async (token, bodyWorkouts) => {
 };
 
 
-module.exports = { postWorkout, postWorkouts, getMyWorkouts, deleteWorkout, deleteWorkouts }
+module.exports = { postWorkout, postWorkouts, postWorkoutsbByUser, getMyWorkouts, deleteWorkout, deleteWorkouts }

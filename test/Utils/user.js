@@ -18,4 +18,10 @@ const postUsers = async (bodyUsers) => {
     }
 }
 
-module.exports = { postUser, postUsers }
+const getUser = async (token, id) =>
+    await request(app)
+        .post(`/users/${id}`)
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-type', 'application/json');
+
+module.exports = { postUser, postUsers, getUser }
