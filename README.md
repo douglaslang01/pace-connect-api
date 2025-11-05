@@ -13,7 +13,6 @@ API para conectar corredores com pace semelhante, promovendo treinos em grupo so
 - GET /trainings/user/{userId} — Buscar treinos de um usuário (treinador)
 - DELETE /trainings/{id} — Excluir treino
 - GET /trainings/consolidate/{userId} — Consolidar pace de um aluno (treinador)
-- GET /trainings/consolidate/all — Consolidar pace de todos os alunos (treinador)
 - GET /trainings/group — Agrupar alunos por pace (treinador)
 - GET /docs — Documentação Swagger
 

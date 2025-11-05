@@ -26,10 +26,6 @@ function consolidatePace(userId) {
     return avgPace;
 }
 
-function consolidateAllPaces() {
-    const alunos = users.filter(u => u.tipo === 'aluno');
-    return alunos.map(a => ({ id: a.id, usuario: a.usuario, pace: consolidatePace(a.id) }));
-}
 
 function groupByPace() {
     const alunos = users.filter(u => u.tipo === 'aluno' && typeof u.pace === 'number');
@@ -43,4 +39,4 @@ function groupByPace() {
     return groups;
 }
 
-module.exports = { addTraining, getTrainingsByUser, deleteTraining, consolidatePace, consolidateAllPaces, groupByPace };
+module.exports = { addTraining, getTrainingsByUser, deleteTraining, consolidatePace, groupByPace };

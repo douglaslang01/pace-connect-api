@@ -241,31 +241,6 @@ paths:
           description: Acesso permitido apenas para treinadores
         '401':
           description: Token não fornecido
-  /trainings/consolidate/all:
-    get:
-      summary: Consolidar pace de todos os alunos (apenas treinador)
-      security:
-        - bearerAuth: []
-      responses:
-        '200':
-          description: Lista de alunos com pace consolidado
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: integer
-                    usuario:
-                      type: string
-                    pace:
-                      type: integer
-        '403':
-          description: Acesso permitido apenas para treinadores
-        '401':
-          description: Token não fornecido
   /trainings/group:
     get:
       summary: Agrupar alunos por pace (apenas treinador)

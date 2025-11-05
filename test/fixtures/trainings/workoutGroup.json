@@ -1,0 +1,77 @@
+[
+    {
+        "id": "CT41",
+        "description": "Agrupamento sem autenticação",
+        "expected": {
+            "status": 401,
+            "errorMsg": "Token não fornecido"
+        }
+    },
+    {
+        "id": "CT42",
+        "description": "Agrupamento com token inválido",
+        "headers": {
+            "Authorization": "Bearer <token inválido>"
+        },
+        "expected": {
+            "status": 403,
+            "errorMsg": "Token inválido"
+        }
+    },
+    {
+        "id": "CT43",
+        "description": "Agrupamento de alunos por pace",
+        "headers": {
+            "Authorization": "Bearer <token válido>"
+        },
+        "setup": [
+            {
+                "usuario": "aluno20",
+                "senha": "123456",
+                "nascimento": "2000-01-01",
+                "sexo": "M",
+                "experiencia": "iniciante",
+                "objetivo": "saúde",
+                "pace": 299,
+                "tipo": "aluno"
+            },
+            {
+                "usuario": "aluno21",
+                "senha": "123456",
+                "nascimento": "1993-04-25",
+                "sexo": "F",
+                "experiencia": "iniciante",
+                "objetivo": "saúde",
+                "pace": 330,
+                "tipo": "aluno"
+            },
+            {
+                "usuario": "aluno22",
+                "senha": "123456",
+                "nascimento": "1985-06-20",
+                "sexo": "M",
+                "experiencia": "iniciante",
+                "objetivo": "saúde",
+                "pace": 331,
+                "tipo": "aluno"
+            }
+        ],
+        "expected": {
+            "status": 200,
+            "bodyType": "object",
+            "groupPaceValidation": true
+        }
+    },
+    {
+        "id": "CT44",
+        "description": "Validação dos intervalos de agrupamento",
+        "headers": {
+            "Authorization": "Bearer <token válido>"
+        },
+        "expected": {
+            "status": 200,
+            "bodyType": "object",
+            "intervalSize": 30
+        }
+    }
+]

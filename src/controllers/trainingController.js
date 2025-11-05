@@ -28,9 +28,6 @@ exports.consolidatePace = (req, res) => {
   res.json({ pace });
 };
 
-exports.consolidateAllPaces = (req, res) => {
-  res.json(consolidateAllPaces());
-};
 
 exports.groupByPace = (req, res) => {
   res.json(groupByPace());
