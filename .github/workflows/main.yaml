@@ -1,4 +1,4 @@
-porname: API Tests
+name: API Tests
 
 on:
   workflow_dispatch:
