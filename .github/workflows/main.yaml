@@ -19,7 +19,7 @@ jobs:
       - name: Rodar os testes de API via Controller
         run: npm run test-controller-reporter
       
-      - name: Upload do relatório como artefato
+      - name: Upload do relatório Mochawesome
         uses: actions/upload-artifact@v4
         with:
           name: mochawesome-report
