@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test-controller": "mocha test/controller/**/*.test.js --timeout 20000 --reporter mochawesome",
+    "test-controller-reporter": "mocha test/controller/**/*.test.js --reporter mochawesome --reporter-options reportDir=mochawesome-report,reportFilename=index,quiet=true",
     "start": "node src/index.js",
     "dev": "nodemon src/index.js"
   },

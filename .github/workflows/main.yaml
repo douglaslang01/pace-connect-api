@@ -17,4 +17,10 @@ jobs:
         run: npm install
 
       - name: Rodar os testes de API via Controller
-        run: npm run test-controller
+        run: npm run test-controller-reporter
+      
+      - name: Upload do relatório como artefato
+        uses: actions/upload-artifact@v3
+        with:
+          name: mochawesome-report
+          path: mochawesome-report/
