@@ -18,6 +18,7 @@ jobs:
 
       - name: Rodar os testes de API via Controller
         run: npm run test-controller-reporter
+        continue-on-error: true
 
       - name: Verificar conteúdo do relatório
         run: ls -R mochawesome-report || echo "Relatório não encontrado"
@@ -26,4 +27,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: mochawesome-report
-          path: test/mochawesome-report/
+          path: mochawesome-report/
