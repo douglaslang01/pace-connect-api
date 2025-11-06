@@ -17,7 +17,8 @@ jobs:
         run: npm install
 
       - name: Rodar os testes de API via Controller
-        run: npx mocha test/controller/**/*.test.js --reporter mochawesome --reporter-options reportDir=test/mochawesome-report,reportFilename=index
+        run: npx mocha test/controller/**/*.test.js --reporter mochawesome --reporter-options reportDir=mochawesome-report,reportFilename=index,reportJson=true
+        continue-on-error: true
 
       - name: Verificar conteúdo do relatório
         run: ls -R mochawesome-report || echo "Relatório não encontrado"
@@ -27,3 +28,14 @@ jobs:
         with:
           name: mochawesome-report
           path: mochawesome-report/
+          
+      - name: Validar sucesso dos testes
+        run: |
+          FAILURES=$(jq '.stats.failures' test/mochawesome-report/mochawesome.json)
+          if [ "$FAILURES" -gt 0 ]; then
+            echo "❌ Testes falharam: $FAILURES falhas encontradas"
+            exit 1
+          else
+            echo "✅ Todos os testes passaram"
+          fi
+
