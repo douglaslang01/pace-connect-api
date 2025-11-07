@@ -31,7 +31,7 @@ jobs:
           
       - name: Validar sucesso dos testes
         run: |
-          FAILURES=$(jq '.stats.failures' test/mochawesome-report/mochawesome.json)
+          FAILURES=$(jq '.stats.failures' mochawesome-report/mochawesome.json)
           if [ "$FAILURES" -gt 0 ]; then
             echo "❌ Testes falharam: $FAILURES falhas encontradas"
             exit 1
