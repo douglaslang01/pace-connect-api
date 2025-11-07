@@ -42,7 +42,7 @@ Acesse http://localhost:3000/docs para ver a documentação.
 ```Powershell
 npm run test-controller
 ```
-O arquivo mochawesome.html será gerado dentro do diretório mochawesome-report.
+O arquivo **`mochawesome.html`** será gerado dentro do diretório mochawesome-report.
 
 ## Testes de Performance
 
