@@ -14,7 +14,7 @@ export const options = {
         { duration: '15s', target: 0 }, // ramp-down to 0 users
     ],
     thresholds: {
-        http_req_duration: ['p(95)<3000', 'max<6000'], // 95% das requisições devem ser respondidas em menos de 2000ms
+        http_req_duration: ['p(95)<3000', 'max<6000'], // 95% das requisições devem ser respondidas em menos de 3000ms
         http_req_failed: ['rate<0.01'] // taxa de erro deve ser menor que 1%
     }
 };
@@ -28,6 +28,7 @@ export default function (data) {
     const token = data.token;
 
     const url = `${getBaseUrl()}/trainings`;
+    
 
     const payload = JSON.stringify({
         dataHora: "2024-11-05T08:00:00",

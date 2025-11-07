@@ -7,6 +7,7 @@ import { getBaseUrl } from '../../Utils/performance.js';
 
 export const options = {
     //iterations: 1
+    // Key configurations for spike in this section
     stages: [
         { duration: '1m', target: 250 }, // fast ramp-up to a high point
         { duration: '30s', target: 0 }, // quick ramp-down to 0 users
