@@ -35,3 +35,36 @@ npm install
 npm start
 ```
 Acesse http://localhost:3000/docs para ver a documentação.
+
+# Execução dos Testes  
+
+## Testes de REST API
+```Powershell
+npm run test-controller
+```
+O arquivo mochawesome.html será gerado dentro do diretório mochawesome-report.
+
+## Testes de Performance
+
+### Execução simples no K6  
+```Powershell
+k6 run .\test\performance\<user/training>\nomeDoTeste.test.js
+```
+
+### Execução com relatório em tempo real  
+O K6 possui um **dashboard web** que pode ser habilitado via variáveis de ambiente:  
+
+```Powershell
+$env:BASE_URL="https://sua-api.com" ; $env:K6_WEB_DASHBOARD="true" ; k6 run .\test\performance\<user/training>\nomeDoTeste.test.js
+```
+
+Acompanhe no navegador em: **http://localhost:5665/**  
+
+### Execução com exportação do relatório em HTML  
+Também é possível exportar o relatório automaticamente:  
+
+```powershell
+$env:BASE_URL="https://sua-api.com" ; $env:K6_WEB_DASHBOARD="true" ; $env:K6_WEB_DASHBOARD_EXPORT="html-report.html" ; k6 run .\test\performance\<user/training>\nomeDoTeste.test.js
+```
+
+O arquivo **`html-report.html`** será gerado dentro da raiz do projeto. 
